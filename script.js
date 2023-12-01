@@ -28,7 +28,7 @@ async function createFallingWord() {
   // Use await to get the result from the asynchronous function
   word.textContent = await generateRandomWord();
   
-  const startPosition = Math.random() * (wordContainer.clientWidth - 100);
+  const startPosition = Math.random() * (wordContainer.clientWidth - 50);
   word.style.left = `${startPosition}px`;
   word.style.top = '0';
   wordContainer.appendChild(word);
@@ -71,10 +71,10 @@ userInput.addEventListener('input', function() {
 // Function to end the game
 function endGame() {
  
-  const modal = document.getElementById('gameOverModal');
-  const modalScore = document.getElementById('modalScore');
-  const highestScoreDisplay = document.getElementById('highestScore');
-  const highestScorePlayerDisplay = document.getElementById('highestScorePlayer');
+  const modal = document.querySelector('#gameOver');
+  const modalScore = document.querySelector('#modalScore');
+  const highestScoreDisplay = document.querySelector('#highestScore');
+  const highestScorePlayerDisplay = document.querySelector('#playerName');
 
   // Retrieve the current highest score data from local storage
   const highestScoreData = JSON.parse(localStorage.getItem('highestScoreData')) || { score: 0, player: '' };
@@ -105,7 +105,7 @@ function endGame() {
 
 // Function to close the modal
 function closeModal() {
-  const modal = document.getElementById('gameOverModal');
+  const modal = document.querySelector('#gameOverModal');
   modal.style.display = 'none';
 }
 

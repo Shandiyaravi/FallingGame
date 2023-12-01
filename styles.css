@@ -48,15 +48,13 @@ body {
  font-size:2rem;
 }
 
-#word-container{
-  width:80%;
-}
+
 #user-input{
   padding:1.5rem 4rem;
   border:2px solid black;
 }
 
-.modal {
+.gameOver {
   display: none;
   position: fixed;
   top: 50%;
