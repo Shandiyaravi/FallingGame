@@ -7,21 +7,22 @@
 </head>
 <body>
   <div class="game-container">
-    <div id="word-container"></div>
-    <div id="site-container">
     <input type="text" id="user-input" placeholder="Type here...">
-    <div id="timer">Time: <span id="timer-value">60</span> seconds</div>
-    <p>Score: <span id="score">0</span></p>
+
+    
   </div>
+    <div class="site-container">
+      <div id="timer">60 sec</div>
+      <p id="score">Score: 0</p>
+      <button id="startButton">Start</button>
+    </div>
     <div id="gameOver" class="gameOver">
-    <p>Game Over!</p>
-    <p>Your score: <span id="modalScore"></span></p>
-    <p>Highest score: <span id="highestScore"></span> by <span id="playerName"></span></p>
-    <button onclick="closeModal()">Close</button>
-   
-  </div>
-  
-  </div>
+      <p>Game Over!</p>
+      <p>Your score: <span id="modalScore"></span></p>
+      <p id="highestScore">Highest score: by <span id="playerName"></span></p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  <div id="word-container"></div>
   <script src="script.js"></script>
 </body>
 </html>
