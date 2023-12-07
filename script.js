@@ -123,7 +123,7 @@ userInput.addEventListener('input', function() {
       // If the entered word is correct, remove the word and update the score
       currentWord.remove();
       score++;
-      scoreDisplay.textContent = ` score:${score}`;
+      scoreDisplay.textContent = ` Score:${score}`;
       userInput.value = '';
       playCorrectSound();
     }
@@ -166,7 +166,7 @@ function endGame() {
   }
 
   // display the score and highest score in the gameOver container
-  playerScore.textContent = `  score: ${score}`;
+  playerScore.textContent = `  Score: ${score}`;
   highestScoreDisplay.textContent = `Highest Score: ${highestScoreData.score} by ${highestScoreData.player}`;
 
   // styles
