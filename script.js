@@ -1,3 +1,5 @@
+"usestrict";
+
 const wordContainer = document.querySelector('#word-container');
 const userInput = document.querySelector('#user-input');
 const scoreDisplay = document.querySelector('#score');
@@ -9,22 +11,26 @@ let timeLeft = 90;
 let correctSound;
 let wrongSound;
 
+//click event to start the game
+
 startButton.addEventListener('click', startGame);
 
+//Function for starting the game
+
 function startGame() {
-  // Reset game state (if needed)
   startButton.removeEventListener('click', startGame);
   score = 0;
   timeLeft = 90;
   scoreDisplay.textContent = 'Score: 0';
   timerDisplay.textContent = '90sec';
   userInput.value = '';
-  
   // Enable input field
+
   userInput.disabled = false;
   userInput.focus();
 
   // Start the timer and word generation
+
   countdown();
   wordInterval = setInterval(function () {
     createFallingWord();
@@ -32,9 +38,7 @@ function startGame() {
 }
 
 
-
-
-// Generate a random word
+// Generate a random word through API
 async function generateRandomWord() {
   const url = 'https://random-word-api.herokuapp.com/word?length=6';
   try {
@@ -47,11 +51,13 @@ async function generateRandomWord() {
 }
 
 // Create a falling word
+
 async function createFallingWord() {
   const word = document.createElement('div');
   word.classList.add('word');
   // Use await to get the result from the asynchronous function
   word.textContent = await generateRandomWord();
+  //Calculates position where the words fall from
   const startPosition = Math.random() * (wordContainer.clientWidth - 50);
   word.style.left = `${startPosition}px`;
   word.style.top = '0';
@@ -60,7 +66,7 @@ async function createFallingWord() {
     { top: '0' },
     { top: '80%' }
   ], {
-    duration: 3000,
+    duration: 3500,
     iterations: 1,
     easing: 'linear'
   });
@@ -70,9 +76,10 @@ async function createFallingWord() {
   };
 }
 
-// Initialize the audio element
 
-correctSound = document.getElementById('correctSound');
+// Initialize the audio element for correct word
+
+correctSound = document.querySelector('#correctSound');
 function playCorrectSound() {
   if (correctSound) {
     correctSound.currentTime = 0; // Reset the audio to the beginning
@@ -80,7 +87,9 @@ function playCorrectSound() {
   }
 }
 
-wrongSound = document.getElementById('wrongSound');
+// Initialize the audio element for wrong word
+
+wrongSound = document.querySelector('#wrongSound');
 function playWrongSound() {
   if (wrongSound) {
     wrongSound.currentTime = 0; // Reset the audio to the beginning
@@ -88,6 +97,7 @@ function playWrongSound() {
   }
 }
 
+//Function for timer
 
 function countdown() {
   const timer = setInterval(() => {
@@ -103,6 +113,7 @@ function countdown() {
 }
 
 // Check user input against the displayed word
+
 userInput.addEventListener('input', function() {
   const currentWord = document.querySelector('.word');
   if (currentWord) {
@@ -120,6 +131,7 @@ userInput.addEventListener('input', function() {
 });
 
 // Additional event listener to clear input when the user misses the word
+
 userInput.addEventListener('change', function() {
   const currentWord = document.querySelector('.word');
   if (currentWord) {
@@ -130,9 +142,10 @@ userInput.addEventListener('change', function() {
 });
 
 // Function to end the game
+
 function endGame() {
-  const modal = document.querySelector('#gameOver');
-  const modalScore = document.querySelector('#modalScore');
+  const gameOverEL = document.querySelector('#gameOver');
+  const playerScore = document.querySelector('#playerScore');
   const highestScoreDisplay = document.querySelector('#highestScore');
   
 
@@ -140,7 +153,7 @@ function endGame() {
   const highestScoreData = JSON.parse(localStorage.getItem('highestScoreData')) || { score: 0, player: '' };
 
   // Update the highest score if the current score is higher
-  if (score > highestScoreData.score) {
+  if (score > highestScoreData.score){
     // Prompt the user for their name or use a pre-defined logic
     const playerName = prompt('Congratulations! You achieved a new high score. Enter your name:') || 'Anonymous';
 
@@ -152,21 +165,25 @@ function endGame() {
     localStorage.setItem('highestScoreData', JSON.stringify(highestScoreData));
   }
 
-  // Set the score and highest score in the modal
-  modalScore.textContent = `  ${score}`;
+  // display the score and highest score in the gameOver container
+  playerScore.textContent = `  ${score}`;
   highestScoreDisplay.textContent = `Highest Score: ${highestScoreData.score} by ${highestScoreData.player}`;
 
-  // Display the modal
-  modal.style.display = 'flex';
-  modal.style.flexDirection='column';
-  modal.style.gap='1rem';
-  modal.style.fontSize='1.5rem';
+  // styles
+  gameOverEL.style.display = 'flex';
+  gameOverEL.style.flexDirection='column';
+  gameOverEL.style.gap='1rem';
+  gameOverEL.style.fontSize='1.5rem';
   
 }
 
 // Function to close the modal
-function closeModal() {
-  const modal = document.querySelector('#gameOver');
-  modal.style.display = 'none';
+function closeGame() {
+  const gameOverEL = document.querySelector('#gameOver');
+  gameOverEL.style.display = 'none';
+  startButton.addEventListener('click', startGame);
+  startGame();
 }
+
+
 

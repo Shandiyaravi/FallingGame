@@ -6,25 +6,33 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!--Game Container-->
   <div class="game-container">
-    <input type="text" id="user-input" placeholder="Type here...">
-
-    
+    <input type="text" id="user-input" placeholder="Type here..."> 
   </div>
-    <div class="site-container">
-      <div id="timer">90 sec</div>
-      <button id="startButton">Start</button>
-      <p id="score">Score: 0</p>
-    </div>
-    <audio id="correctSound" src="success-1-6297.mp3"></audio>
-    <audio id="wrongSound" src="mixkit-wrong-electricity-buzz-955.wav"></audio>
-    <div id="gameOver" class="gameOver">
-      <p>Game Over!</p>
-      <p>Your score: <span id="modalScore"></span></p>
-      <p id="highestScore">Highest score: by <span id="playerName"></span></p>
-      <button class="closeButton" onclick="closeModal()">Close</button>
-    </div>
+
+  <!--Word Container-->
   <div id="word-container"></div>
+
+  <!--Site Container-->
+  <div class="site-container">
+  <div id="timer">90 sec</div>
+    <button id="startButton">Start</button>
+    <p id="score">Score: 0</p>
+  </div>
+
+  <!--Audio Files-->
+  <audio id="correctSound" src="success-1-6297.mp3"></audio>
+  <audio id="wrongSound" src="mixkit-wrong-electricity-buzz-955.wav"></audio>
+
+  <!--GameOver Container-->
+  <div id="gameOver" class="gameOver">
+    <p>Game Over!</p>
+    <p id="playerScore">Your score:</p>
+    <p id="highestScore">Highest score: by <span id="playerName"></span></p>
+    <button class="closeButton" onclick="closeGame()">Close</button>
+  </div>
+ 
   <script src="script.js"></script>
 </body>
 </html>
